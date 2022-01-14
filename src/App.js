@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Display from "./Components/Display/index";
+import Search from "./Components/Search/index";
+import RandomButton from "./Components/RandomButton";
+import { useState } from "react";
 
 function App() {
+  const [search, setSearch] = useState("");
+
+  function handleClick(input) {
+    setSearch(input);
+    console.log("searched", input);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Display search={search}></Display>
+      <nav>
+        <Search handleClick={handleClick}></Search>
+        <RandomButton handleClick={handleClick} search={search}></RandomButton>
+      </nav>
     </div>
   );
 }
